@@ -78,12 +78,12 @@ def calcPrimes():
     e = 65537
     '''
     Generating odd random large numbers of 521 bit size (decreased due to time
-    constraints (~1 seconds vs. ~30 seconds with 2084 bit numbers(industry standard)))
+    constraints (~3 seconds vs. ~30 seconds with 2084 bit numbers(industry standard)))
     '''
-    num1 = random.getrandbits(521)
+    num1 = random.getrandbits(1042)
     if num1 % 2 == 0:
         num1 += 1
-    num2 = random.getrandbits(521)
+    num2 = random.getrandbits(1042)
     if num2 % 2 == 0:
         num2 += 1
 
