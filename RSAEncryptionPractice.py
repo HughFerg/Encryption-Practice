@@ -77,8 +77,9 @@ def calcPrimes():
     global e
     e = 65537
     '''
-    Generating odd random large numbers of 521 bit size (decreased due to time
-    constraints (~3 seconds vs. ~30 seconds with 2084 bit numbers(industry standard)))
+    Generating odd random large numbers of 1042 bit size (decreased due to time
+    constraints (~3 seconds vs. ~30 seconds with
+    2084 bit numbers(industry standard)))
     '''
     num1 = random.getrandbits(1042)
     if num1 % 2 == 0:
