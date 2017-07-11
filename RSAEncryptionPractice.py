@@ -163,7 +163,7 @@ def main():
     startTime = time.time()
     calcPrimes()
     print ("%f Seconds" % (time.time() - startTime))
-    # Used for primeality optimization testing
+    # Timer used for primality optimization testing
     encrypt()
     decrypt()
 
