@@ -106,7 +106,7 @@ def calcPrimes():
         while not isPrime(num2, 400):
             num2 += 2
 
-    gcd, a, b = egcd(e, phiOfn)
+    a, b = EEA(e, phiOfn)
     global d
     d = a
     if d < 0:
@@ -126,17 +126,16 @@ def calcPrimes():
 # OR d * e = 1 mod phiOfn
 # Use Extended Euclidean Algorithm to calculate
 # Essentially Extended Euclidean Algorithm ran backwards
-# EED essentially calculates x and y such that  ax+by=gcd(a,b)
+# EEA essentially calculates x and y such that  ax+by=gcd(a,b)
 
 
-def egcd(a, b):
+def EEA(a, b):
     x, y, u, v = 0, 1, 1, 0
     while a != 0:
         q, r = b // a, b % a
         m, n = x - u * q, y - v * q
         b, a, x, y, u, v = a, r, u, v, m, n
-        gcd = b
-    return gcd, x, y
+    return x, y
 
 
 def encrypt():
@@ -154,7 +153,7 @@ def decrypt():
         decryptedMessage.append(str(pow(values, d, n)))
     finalMessage = str("")
     for char in decryptedMessage:
-        finalMessage += chr(int(char))
+        finalMessage += chr(long(char))
     print ("Decrypted message: %s" % finalMessage)
 
 
