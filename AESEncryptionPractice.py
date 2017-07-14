@@ -35,7 +35,7 @@ def GetMessageAndKey():
     message = raw_input("What is your message? ")
     key = random.getrandbits(16)
 
-    state = message.split()
+    state = list(message)
 
     return state, key
 
@@ -59,24 +59,35 @@ def SubBytes(state):
         0x70, 0x3E, 0xB5, 0x66, 0x48, 0x03, 0xF6, 0x0E, 0x61, 0x35, 0x57, 0xB9, 0x86, 0xC1, 0x1D, 0x9E,
         0xE1, 0xF8, 0x98, 0x11, 0x69, 0xD9, 0x8E, 0x94, 0x9B, 0x1E, 0x87, 0xE9, 0xCE, 0x55, 0x28, 0xDF,
         0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16
-            )
+           )
 
     for x in range(0, len(state)):
         state[x] = SBox[x]
+
+    print state
+
+
+def ShiftRows(state):
+    temp = [16]
 
 
 def rounds(count, state, key):
 
     SubBytes(state)      # Main rounds (repeated x times)
+    '''
     ShiftRows(state)
     MixColumns()
     AddRoundKey(state, key)
+    '''
 
 
 def AES():
 
     state, key = GetMessageAndKey()
 
+    SubBytes(state)
+
+    '''
     KeyExpansion()
     AddRoundKey()   # Same as initial round
 
@@ -86,6 +97,7 @@ def AES():
     SubBytes(state)      # Final round
     ShiftRows(state)
     AddRoundKey(state, key)
+    '''
 
 
 def main():
