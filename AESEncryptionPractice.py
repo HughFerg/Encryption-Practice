@@ -1,8 +1,9 @@
 '''
-Purely for learning purposes only, actual encryption not objective or realistic
+For educational purposes only, actual encryption not objective or realistic
 
 Created by Hugh Ferguson on 7/13/2017
 '''
+
 import random
 
 '''
@@ -61,21 +62,59 @@ def SubBytes(state):
         0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16
            )
 
+    while len(state) < 16:
+        state.append(" ")
+
     for x in range(0, len(state)):
         state[x] = SBox[x]
 
     print state
+    return state
 
 
 def ShiftRows(state):
-    temp = [16]
+
+    temp = [None] * 16  # Declares empty list of size 16
+
+    temp[0] = state[0]
+
+    temp[1] = state[5]
+    temp[2] = state[10]
+    temp[3] = state[15]
+
+    temp[4] = state[4]
+    temp[5] = state[9]
+    temp[6] = state[14]
+    temp[7] = state[3]
+
+    temp[8] = state[8]
+    temp[9] = state[13]
+    temp[10] = state[2]
+    temp[11] = state[7]
+
+    temp[12] = state[12]
+    temp[13] = state[1]
+    temp[14] = state[6]
+    temp[15] = state[11]
+
+    for x in range(0, 16):
+        state[x] = temp[x]
+
+    print state
+
+
+def AddRoundKey(state, roundKey):
+
+    for x in range(0, 16):
+        state[x] ^ roundKey[x]  # XOR == Binary addition mod 2 (Galois field)
 
 
 def rounds(count, state, key):
 
-    SubBytes(state)      # Main rounds (repeated x times)
+    ShiftRows(state)    # Main rounds (repeated x times)
+    SubBytes(state)
+
     '''
-    ShiftRows(state)
     MixColumns()
     AddRoundKey(state, key)
     '''
@@ -85,7 +124,7 @@ def AES():
 
     state, key = GetMessageAndKey()
 
-    SubBytes(state)
+    ShiftRows(SubBytes(state))
 
     '''
     KeyExpansion()
