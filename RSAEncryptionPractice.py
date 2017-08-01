@@ -132,8 +132,10 @@ def calcPrimes():
 def EEA(a, b):
     x, y, u, v = 0, 1, 1, 0
     while a != 0:
-        q, r = b // a, b % a
-        m, n = x - u * q, y - v * q
+        q = b // a
+        r = b % a
+        m = x - u * q
+        n = y - v * q
         b, a, x, y, u, v = a, r, u, v, m, n
     return x, y
 
@@ -162,7 +164,7 @@ def main():
     startTime = time.time()
     calcPrimes()
     print ("%f Seconds" % (time.time() - startTime))
-    # Timer used for primality optimization testing
+    # Timer used for testing of primality optimization
     encrypt()
     decrypt()
 
