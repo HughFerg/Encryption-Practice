@@ -154,8 +154,10 @@ def decrypt():
     for values in encryptedMessageList:
         decryptedMessage.append(str(pow(values, d, n)))
     finalMessage = str("")
+    
     for char in decryptedMessage:
         finalMessage += chr(long(char))
+
     print ("Decrypted message: %s" % finalMessage)
 
 
