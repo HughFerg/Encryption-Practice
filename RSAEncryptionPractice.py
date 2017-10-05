@@ -125,18 +125,17 @@ def calcPrimes():
 # d = modular inverse of e with respect to phi of n ((e * d mod phiOfn) = 1)
 # OR d * e = 1 mod phiOfn
 # Use Extended Euclidean Algorithm to calculate
-# Essentially Extended Euclidean Algorithm ran backwards
 # EEA essentially calculates x and y such that  ax+by=gcd(a,b)
 
 
 def EEA(a, b):
-    x, y, u, v = 0, 1, 1, 0
+    x, y, z, v = 0, 1, 1, 0
     while a != 0:
         q = b // a
         r = b % a
-        m = x - u * q
+        m = x - z * q
         n = y - v * q
-        b, a, x, y, u, v = a, r, u, v, m, n
+        b, a, x, y, z, v = a, r, z, v, m, n
     return x, y
 
 
